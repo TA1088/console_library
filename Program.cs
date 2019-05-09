@@ -1,4 +1,5 @@
-﻿using console_library.Models;
+﻿using System;
+using console_library.Models;
 
 namespace console_library
 {
@@ -6,12 +7,30 @@ namespace console_library
     {
         static void Main(string[] args)
         {
-        //    Book myBook = new Book();
-        //    myBook.Author = "Shel Silverstein";
-        //    myBook.Title = "Where the Sidewalk Ends";
-        Book WhereTheSidewalkEnds = new Book("Where the Sidewalk Ends", "Shel Silverstein");
-        
+            System.Console.WriteLine("Hello World");
+            Library myLibrary =new Library("The Library!", "People of Boise", "Boise");
+            System.Console.WriteLine(myLibrary.Name);
+            Book hp = new Book("Harry Potter", "JKR");
+            Book lotr = new Book("The Hobbit", "Tolken");
+            Book narnia = new Book("Narnia", "CS Lewis", false);
+            myLibrary.AddBook(hp);
+            myLibrary.AddBook(lotr);
+            myLibrary.AddBook(narnia);
 
+            bool inLibrary = true;
+            myLibrary.Greeting();
+            while(inLibrary)
+            {
+                Console.ReadLine();
+                Console.Clear();
+                bool stayInLibrary = myLibrary.PrintDirectory();
+                if(!stayInLibrary) 
+                {
+                    inLibrary = false;
+                    System.Console.WriteLine("Thanks for visiting the library");
+                }
+
+            }
         }
     }
 }
